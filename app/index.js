@@ -10,6 +10,7 @@ import {
 } from "../components";
 
 export default function Home() {
+  const [searchTerm,setSearchTerm]=useState("")
   const router = useRouter();
   return (
     <SafeAreaView style={styles.container}>
@@ -33,7 +34,15 @@ export default function Home() {
             padding: SIZES.medium,
           }}
         >
-          <Welcome/>
+          <Welcome
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            handleClick={()=>{
+              if(searchTerm){
+                router.push(`/search/${searchTerm}`)
+              }
+            }}
+          />
           <Popularjobs/>
           <Nearbyjobs/>
         </View>
